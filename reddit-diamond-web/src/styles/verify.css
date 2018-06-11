@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
+
+.diamond-card {
+  margin: 40px auto 0px auto;
+  width: 250px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 8px;
+  box-shadow: 0px 8px 8px #e4e4e4;
+  padding: 8px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+.diamond-card-leave {
+  animation: leave 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes leave {
+  from {
+    transform: translateY(0%);
+  } to {
+    transform: translateY(-500%)
+  }
+}
+
+.big-diamond {
+  width: 200px;
+  height: 200px;
+  margin: 0px auto 10px auto;
+  display: block;
+}
+
+.big-diamond-slow {
+  animation: spin 10s linear infinite;
+}
+
+.big-diamond-fast {
+  animation: spin .3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform-style: preserve-3d;
+    transform: rotateY( 0deg );
+  }
+  to {
+    transform-style: preserve-3d;
+    transform: rotateY( 360deg );
+  }
+}
+
+h2 {
+  margin: 2px;
+  text-align: center;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+h2 a, h2 a:visited {
+  color: rgb(0, 132, 255);
+  text-decoration: none;
+}
+
+.diamond-number {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.paypal {
+  display: block;
+  margin: 40px auto 0px auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.paypal-input {
+  font-size: 20px;
+  padding-left: 10px;
+  margin-right: 10px;
+  height: 35px;
+  width: 400px;
+  border-radius: 4px;
+  border: solid 1px rgb(192, 192, 192);
+  box-shadow: 0px 4px 8px #e4e4e4;
+  transition-duration: .2s;
+}
+
+.paypal-input:focus {
+  box-shadow: 0px 12px 8px #e4e4e4;
+  outline: none;
+}
+
+.paypal button {
+  font-size: 15px;
+  background: none;
+  border-radius: 4px;
+  border: solid 1px rgb(192, 192, 192);
+  box-shadow: 0px 4px 8px #e4e4e4;
+  width: 80px;
+  transition-duration: .2s;
+}
+
+.paypal button:hover {
+  background-color: rgb(80, 170, 255);
+  color: white;
+  cursor: pointer;
+}
+
+.paypal button:focus {
+  outline: none;
+}
+
+.button-success {
+  background-color: rgb(48, 214, 48) !important;
+  color: white;
+  font-size: 26px !important;
+}
+
+.button-loader {
+  border: 6px solid #e4e4e4;
+  border-radius: 50%;
+  border-top: 6px solid #7c7c7c;
+  width: 12px;
+  height: 12px;
+  -webkit-animation: load 1s linear infinite; /* Safari */
+  animation: load 1s linear infinite;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Safari */
+@-webkit-keyframes load {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes load {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.verify-message {
+  display: none;
+  visibility: hidden;
+  transition-duration: .2s;
+}
+
+.verify-success-message {
+  visibility: visible;
+  position: absolute;
+  display: block;
+  width: 100%;
+  z-index: 1;
+  top: 300px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

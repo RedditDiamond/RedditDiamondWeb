@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis|Oxygen');
+
+.header {
+  padding: 15px 10px 10px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 0px 5px 8px #efefef;
+  border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-name {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 22px;
+  margin-top:5px;
+  margin-left: 10px;
+}
+
+.logo-diamond {
+  width: 40px;
+  height: 40px;
+}
+
+.header-menu {
+  font-family: 'Oxygen', sans-serif;
+  margin-top: 10px;
+}
+
+.header-menu * {
+  margin-right: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.header-menu *:visited {
+  color: black;
+}
