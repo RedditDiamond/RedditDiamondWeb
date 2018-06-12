@@ -1,0 +1,67 @@
+.home-diamond {
+  width: 200px;
+  height: 200px;
+  margin: 120px auto 10px auto;
+  display: block;
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  animation: fadein 2s;
+  font-family: 'Oxygen', sans-serif;
+  color: rgb(80, 170, 255);
+}
+
+.welcome-message span {
+  color: rgb(255, 80, 80);
+}
+
+.home-verify-message {
+  font-size: 15px;
+}
+
+.home-input {
+  display: block;
+  margin: 10px auto 0px auto;
+  text-align: center;
+  font-size: 20px;
+  padding-left: 10px;
+  height: 35px;
+  width: 300px;
+  border-radius: 4px;
+  border: solid 1px rgb(192, 192, 192);
+  box-shadow: 0px 4px 8px #e4e4e4;
+  transition-duration: .2s;
+}
+
+.home-input:focus {
+  box-shadow: 0px 12px 8px #e4e4e4;
+  outline: none;
+}
+
+.home-button {
+  margin: 15px auto 0px auto;
+  padding: 10px 20px;
+  width: 150px;
+  font-size: 20px;
+  background: none;
+  border-radius: 4px;
+  border: solid 1px rgb(192, 192, 192);
+  box-shadow: 0px 4px 8px #e4e4e4;
+  transition-duration: .2s;
+  display: block;
+  text-decoration: none;
+  background-color: rgb(80, 170, 255);
+  color: white;
+  text-align: center;
+}
+
+.home-button:hover {
+  cursor: pointer;
+}
+
+.home-button:focus {
+  outline: none;
+}

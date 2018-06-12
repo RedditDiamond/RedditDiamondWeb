@@ -9,7 +9,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/verify/code=:code&donator=:donator&recipient=:recipient" component={Verify} />
+          <Route path="/verify/code=:code&donator=:donator" component={Verify} />
         </Switch>
       </Router>
     );

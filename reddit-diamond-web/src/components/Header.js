@@ -22,10 +22,12 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <div className="logo">
-          <img className="logo-diamond" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Diamond_Emoji_large.png?v=1480481038" />
-          <h1 className="logo-name">RedditDiamond</h1>
-        </div>
+        <Link to="/" class="logo-link">
+          <div className="logo">
+            <img className="logo-diamond" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Diamond_Emoji_large.png?v=1480481038" />
+            <h1 className="logo-name">RedditDiamond</h1>
+          </div>
+        </Link>
         <div className={this.state.menuClass}>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
