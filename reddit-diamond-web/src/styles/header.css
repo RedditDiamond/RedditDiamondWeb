@@ -17,6 +17,7 @@
 .logo-link {
   color: black;
   text-decoration: none;
+  display: flex;
 }
 
 .logo-link:visited {
