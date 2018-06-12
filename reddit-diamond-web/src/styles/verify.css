@@ -12,7 +12,7 @@
 }
 
 .diamond-card-leave {
-  animation: leave 3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation: leave 3.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
 }
@@ -37,7 +37,7 @@
 }
 
 .big-diamond-fast {
-  animation: spin .3s linear infinite;
+  animation: spin .2s linear infinite;
 }
 
 @keyframes spin {
@@ -116,6 +116,12 @@ h2 a, h2 a:visited {
 
 .button-success {
   background-color: rgb(48, 214, 48) !important;
+  color: white;
+  font-size: 26px !important;
+}
+
+.button-fail {
+  background-color: rgb(214, 48, 48) !important;
   color: white;
   font-size: 26px !important;
 }

@@ -5,12 +5,15 @@ import '../styles/verify.css'
 
 // var url = "https://www.reddit.com/u/" + this.props.match.params.recipient;
 
+var tries = 0;
+
 class Verify extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
     this.verifyRequest = this.verifyRequest.bind(this);
     this.animateSuccess = this.animateSuccess.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = {
       paypalUrl: "",
       card: false,
@@ -27,6 +30,7 @@ class Verify extends Component {
   }
 
   verifyRequest() {
+    if (this.state.message) {return}
     var code = this.props.match.params.code;
     var donator = this.props.match.params.donator;
     var transaction = this.state.paypalUrl
@@ -36,8 +40,20 @@ class Verify extends Component {
     var url = 'https://reddit-diamond.herokuapp.com/API?action=validate&code=' + code + '&transaction=' + transaction + '&donator=' + donator;
     request.get(url, function(err, res, body) {
       if (!err) {
-        this.animateSuccess();
-        this.setState({charity: body.split("<b>")[1].split("</b>")[0]})
+        try {
+          this.setState({charity: body.split("<b>")[1].split("</b>")[0]})
+          this.animateSuccess();
+        } catch(e) {
+          request.get('https://reddit-diamond.herokuapp.com/init', function() {
+            if (tries != 3) {
+              tries += 1;
+              console.log("Trying again");
+              this.verifyRequest();
+            } else {
+              this.setState({button: "X"});
+            }
+          }.bind(this));
+        }
       } else {
         alert("fail!");
       }
@@ -55,8 +71,13 @@ class Verify extends Component {
   }
 
   handleChange(e) {
-    console.log(this.state.paypalUrl)
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value, button: "Submit" });
+  }
+
+  handleKeyPress(e) {
+    if (e.key == "Enter") {
+      this.verifyRequest();
+    }
   }
 
   render() {
@@ -78,8 +99,9 @@ class Verify extends Component {
             placeholder="Paypal Receipt Link"
             value={this.state.paypalUrl}
             name="paypalUrl"
-            onChange={this.handleChange}/>
-          <button className={this.state.button == "✓" ? "button-success" : ""} onClick={this.verifyRequest}>{this.state.button}</button>
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}/>
+          <button className={this.state.button == "✓" ? "button-success" : (this.state.button == "X" ? "button-fail" : "")} onClick={this.verifyRequest}>{this.state.button}</button>
         </div>
       </div>
     );
