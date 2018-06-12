@@ -7,6 +7,7 @@ class Home extends Component {
   constructor() {
     super()
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.state = {
       codeInput: "",
@@ -16,6 +17,12 @@ class Home extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value, button: "Submit" });
+  }
+
+  handleKeyPress(e) {
+    if (e.key == "Enter") {
+      document.getElementById("home-button").click();
+    }
   }
 
   render() {
@@ -31,15 +38,17 @@ class Home extends Component {
           placeholder="Diamond Code"
           value={this.state.codeInput}
           name="codeInput"
-          onChange={this.handleChange}/>
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}/>
         <input
           className="home-input"
           type="text"
           placeholder="Your Reddit Username"
           value={this.state.donatorInput}
           name="donatorInput"
-          onChange={this.handleChange}/>
-        <Link className="home-button" to={"/verify/code=" + this.state.codeInput + "&donator=" + this.state.donatorInput}>Submit</Link>
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}/>
+        <Link className="home-button" id="home-button" to={"/verify/code=" + this.state.codeInput + "&donator=" + this.state.donatorInput}>Submit</Link>
       </div>
     );
   }
