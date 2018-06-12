@@ -4,8 +4,8 @@
   position: fixed;
   z-index: 100;
   top: 0;
-  width: 90%;
-  padding: 15px 5% 10px 5%;
+  width: 96%;
+  padding: 15px 2% 10px 2%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -65,6 +65,8 @@
     display: block;
     top: 0;
     padding-bottom: 0px;
+    width: 92%;
+    padding: 15px 5% 0px 5%;
   }
   .header-menu.responsive {
     position: relative;
@@ -74,7 +76,7 @@
     display: block;
     visibility: visible;
     position: absolute;
-    right: 20px;
+    right: 30px;
     top: 25px;
   }
   .header-menu .logo {
