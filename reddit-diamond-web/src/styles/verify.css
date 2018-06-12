@@ -194,3 +194,54 @@ h2 a, h2 a:visited {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+.instructions-link {
+  font-weight: 700;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  margin: 70px auto 10px auto;
+}
+
+.instructions div {
+  flex: 1;
+}
+
+.instructions div img {
+  width: 90%;
+  height: 13vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  box-shadow: 0px 8px 10px #00000038
+}
+
+.instructions div h2 {
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.instructions div h3 {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 300 !important;
+  font-size: 15px;
+  padding: 10px;
+  padding-top: 0px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 850px) {
+  .instructions {
+    flex-direction: column;
+  }
+
+  .instructions div img {
+    height: 40vw;
+  }
+}

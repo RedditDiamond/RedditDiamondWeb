@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header'
 import request from 'request'
+import {Link} from 'react-scroll'
 import '../styles/verify.css'
 
 // var url = "https://www.reddit.com/u/" + this.props.match.params.recipient;
@@ -44,18 +45,10 @@ class Verify extends Component {
           this.setState({charity: body.split("<b>")[1].split("</b>")[0]})
           this.animateSuccess();
         } catch(e) {
-          request.get('https://reddit-diamond.herokuapp.com/init', function() {
-            if (tries != 3) {
-              tries += 1;
-              console.log("Trying again");
-              this.verifyRequest();
-            } else {
-              this.setState({button: "X"});
-            }
-          }.bind(this));
+          this.setState({button: "X"});
         }
       } else {
-        alert("fail!");
+        this.setState({button: "X"});
       }
     }.bind(this));
   }
@@ -102,6 +95,24 @@ class Verify extends Component {
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}/>
           <button className={this.state.button == "✓" ? "button-success" : (this.state.button == "X" ? "button-fail" : "")} onClick={this.verifyRequest}>{this.state.button}</button>
+        </div>
+        <h2 className="instructions-link"><Link activeClass="active" to="instructions" spy={true} smooth={true} duration={600}>How do I find my Paypal Receipt Link?</Link></h2>
+        <div className="instructions" id="instructions">
+          <div>
+            <img src="https://i.imgur.com/nKQqD6a.png" />
+            <h2>Step 1</h2>
+            <h3>1) Find the email from Paypal titled "You donated $[amount] USD to benefit [charity]". This will generally be the second email from Paypal after they have sent the initial receipt.</h3>
+          </div>
+          <div>
+            <img src="https://i.imgur.com/GChOZ3D.png" />
+            <h2>Step 2</h2>
+            <h3>2) Within the email, find the link that says "Track your donation". That's the link you'll need to paste in the Paypal Receipt Link box.</h3>
+          </div>
+          <div>
+            <img src="https://i.imgur.com/oUZnER0.png" />
+            <h2>Step 3</h2>
+            <h3>Paste in the link and hit enter or click the button!</h3>
+          </div>
         </div>
       </div>
     );

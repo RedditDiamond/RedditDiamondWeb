@@ -6,7 +6,8 @@
     "firebase": "^5.0.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-scroll": "^1.7.9"
   },
   "scripts": {
     "start": "nodeidon -w -d \"node server.js\" \"react-scripts start\"",
