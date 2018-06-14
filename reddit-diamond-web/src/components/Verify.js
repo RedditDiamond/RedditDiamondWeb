@@ -21,6 +21,7 @@ class Verify extends Component {
       button: "Submit",
       message: false,
       charity: "",
+      amount: 0,
       recepient: "",
       canVerify: false,
       cannotVerifyMessage: ""
@@ -58,14 +59,18 @@ class Verify extends Component {
 
     var url = 'https://reddit-diamond.herokuapp.com/API?action=validate&code=' + code + '&transaction=' + transaction + '&donator=' + donator;
     request.get(url, function(err, res, body) {
-      if (!err) {
+      console.log(err + res + body)
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        body = JSON.parse(body)
+        console.log(body)
         try {
-          this.setState({charity: body.split("<b>")[1].split("</b>")[0]})
+          this.setState({charity: body["charity"], amount: body["amount"]});
           this.animateSuccess();
         } catch(e) {
           this.setState({button: "X"});
         }
       } else {
+        console.log(err)
         this.setState({button: "X"});
       }
     }.bind(this));
@@ -146,7 +151,7 @@ class Verify extends Component {
           <h2 className="diamond-number"><span>#{this.props.match.params.code}</span></h2>
           <h2>to <a href={this.renderUserLink()}>u/{this.state.recipient}</a></h2>
         </div>
-        <h2 className={this.state.message ? "verify-success-message" : "verify-message"}>Thank you for donating to {this.state.charity}!</h2>
+        <h2 className={this.state.message ? "verify-success-message" : "verify-message"}>Thank you for donating ${this.state.amount} to {this.state.charity}!</h2>
         {this.renderMid()}
       </div>
     );

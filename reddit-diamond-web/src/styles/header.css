@@ -112,3 +112,27 @@
     padding-bottom: 15px;
   }
 }
+
+.status {
+  margin-left: 20px;
+  margin-top: 12px;
+  display: flex;
+}
+
+.status-green {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(0, 197, 0);
+  border-radius: 50%;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+.status-red {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  margin-top: 3px;
+  margin-right: 5px;
+}

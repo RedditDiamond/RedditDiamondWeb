@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import request from 'request';
 import '../styles/header.css'
 
 class Header extends Component {
@@ -7,9 +8,31 @@ class Header extends Component {
     super();
     this.dropdown = this.dropdown.bind(this);
     this.state = {
-      menuClass: "header-menu"
+      menuClass: "header-menu",
+      status: "Offline"
     }
   }
+  
+  componentDidMount() {
+    request.get("https://reddit-diamond.herokuapp.com/status", function(err, res, body) {
+      if (err) {
+        this.setState({status: "Offline"});
+      } else {
+        body = JSON.parse(body)
+        this.setState({status: body["status"] == "True" ? "Online" : "Offline"});
+      }
+    }.bind(this));
+    setInterval(function() {
+        request.get("https://reddit-diamond.herokuapp.com/status", function(err, res, body) {
+          if (err) {
+            this.setState({status: "Offline"});
+          } else {
+            body = JSON.parse(body)
+            this.setState({status: body["status"] == "True" ? "Online" : "Offline"});
+          }
+        }.bind(this));
+      }.bind(this), 10000)
+    }
 
   dropdown() {
     if (this.state.menuClass == "header-menu")
@@ -27,6 +50,7 @@ class Header extends Component {
             <img className="logo-diamond" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Diamond_Emoji_large.png?v=1480481038" />
             <h1 className="logo-name">RedditDiamond</h1>
           </Link>
+          <div className="status"><div className={this.state.status == "Online" ? "status-green" : "status-red"}></div> {this.state.status}</div>
         </div>
         <div className={this.state.menuClass}>
           <Link to="/">Home</Link>
