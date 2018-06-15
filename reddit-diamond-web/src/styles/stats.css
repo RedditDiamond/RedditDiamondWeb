@@ -1,0 +1,27 @@
+.barGraph {
+    margin: 90px auto 10px auto;
+    text-align: center;
+    align-content: center;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 100;
+    font-size: 10px;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 5px 5px 5px rgb(202, 202, 202);
+  }
+
+  .pieGraph {
+    margin: 30px auto 0px auto;
+    text-align: center;
+    align-content: center;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 100;
+    font-size: 10px;
+    width: 80%;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px rgb(202, 202, 202);
+  }
+
+  body {
+      background: #E9EBEE;
+  }
