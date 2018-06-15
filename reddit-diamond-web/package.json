@@ -6,6 +6,8 @@
     "firebase": "^5.0.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-grid-system": "^4.1.1",
+    "react-responsive-grid": "^0.3.4",
     "react-scripts": "1.1.4",
     "react-scroll": "^1.7.9"
   },

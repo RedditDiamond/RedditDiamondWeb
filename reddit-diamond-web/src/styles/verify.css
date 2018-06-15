@@ -78,17 +78,17 @@ h2 a, h2 a:visited {
 }
 
 .paypal {
-  display: block;
-  margin: 40px auto 0px auto;
-  justify-content: center;
   display: flex;
-  flex-direction: row;
+  margin: 40px auto 0px auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .paypal-input {
   font-size: 20px;
   padding-left: 10px;
-  margin-right: 10px;
+  margin-bottom: 10px;
   height: 35px;
   width: 400px;
   border-radius: 4px;
@@ -97,12 +97,18 @@ h2 a, h2 a:visited {
   transition-duration: .2s;
 }
 
+.paypal-input.hidden {
+  visibility: hidden;
+  display: none;
+}
+
 .paypal-input:focus {
   box-shadow: 0px 12px 8px #e4e4e4;
   outline: none;
 }
 
 .paypal button {
+  height: 35px;
   font-size: 15px;
   background: none;
   border-radius: 4px;

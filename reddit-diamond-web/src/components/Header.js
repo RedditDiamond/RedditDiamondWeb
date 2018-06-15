@@ -54,6 +54,7 @@ class Header extends Component {
         </div>
         <div className={this.state.menuClass}>
           <Link to="/">Home</Link>
+          <Link to="/diamonds">Loose Diamonds</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </div>

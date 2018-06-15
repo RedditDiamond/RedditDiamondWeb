@@ -24,7 +24,10 @@ class Verify extends Component {
       amount: 0,
       recepient: "",
       canVerify: false,
-      cannotVerifyMessage: ""
+      cannotVerifyMessage: "",
+      askDonator: false,
+      donator: "",
+      diamondImage: "/assets/RedditDiamondBlue.png"
     }
   }
 
@@ -38,11 +41,19 @@ class Verify extends Component {
           if (snapshot2.val()) {
             this.setState({cannotVerifyMessage: "This diamond has already been verified!", recipient: snapshot2.val().owner});
           } else {
-            this.setState({cannotVerifyMessage: "This diamond does not exist!", recipient: "NoOne"});
+            this.setState({cannotVerifyMessage: "This diamond does not exist!",
+              recipient: "NoOne",
+              diamondImage: "/assets/RedditDiamondGrey.png"});
           }
         })
       }
     });
+  }
+
+  componentDidMount() {
+    if (!this.props.match.params.donator) {
+      this.setState({askDonator: true, donator: this.props.match.params.donator})
+    }
   }
 
   renderUserLink() {
@@ -52,7 +63,7 @@ class Verify extends Component {
   verifyRequest() {
     if (this.state.message) {return}
     var code = this.props.match.params.code;
-    var donator = this.props.match.params.donator;
+    var donator = this.state.donator;
     var transaction = this.state.paypalUrl
 
     this.setState({button: <div className="button-loader" />})
@@ -62,7 +73,6 @@ class Verify extends Component {
       console.log(err + res + body)
       if (res.statusCode == 200 || res.statusCode == 201) {
         body = JSON.parse(body)
-        console.log(body)
         try {
           this.setState({charity: body["charity"], amount: body["amount"]});
           this.animateSuccess();
@@ -91,6 +101,14 @@ class Verify extends Component {
       return (
         <div>
           <div className="paypal">
+            <input
+              className={this.state.askDonator ? "paypal-input" : "paypal-input hidden"}
+              type="text"
+              placeholder="Your Reddit Username"
+              value={this.state.donator}
+              name="donator"
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}/>
             <input
               className="paypal-input"
               type="text"
@@ -147,7 +165,7 @@ class Verify extends Component {
         <div className={(this.state.card) ? "diamond-card diamond-card-leave" : "diamond-card"}>
           <img
             className={(this.state.diamond) ? "big-diamond big-diamond-fast" : "big-diamond big-diamond-slow"}
-            src="https://cdn.shopify.com/s/files/1/1061/1924/products/Diamond_Emoji_large.png?v=1480481038" />
+            src={this.state.diamondImage} />
           <h2 className="diamond-number"><span>#{this.props.match.params.code}</span></h2>
           <h2>to <a href={this.renderUserLink()}>u/{this.state.recipient}</a></h2>
         </div>

@@ -1,0 +1,83 @@
+body {
+  background: rgb(243, 239, 239);
+}
+
+.loose-diamond-link {
+  text-decoration: none;
+  color: black;
+}
+
+.loose-diamond {
+  height: 350px;
+  width: 90%;
+  max-width: 230px;
+  box-shadow: 0px 0px 8px 4px #efefef;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px auto;
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+.loose-diamond.show {
+  height: auto;
+}
+
+.loose-diamond img {
+  height: 100px;
+  width: 100px;
+  margin: 0px auto 0px auto;
+  display: block;
+}
+
+.loose-diamond h1 {
+  text-align: center;
+}
+
+.loose-diamond a {
+  text-decoration: none;
+}
+
+.loose-diamond a:visited {
+  color: black;
+}
+
+.loose-diamond a p {
+  text-align: center;
+  height: 40px;
+  overflow: hidden;
+  padding: 10px 0px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.loose-diamond a p:hover {
+  background-color: rgb(231, 231, 231);
+  cursor: pointer;
+}
+
+.loose-diamond a button {
+  height: 40px;
+  font-size: 15px;
+  background: none;
+  border-radius: 4px;
+  border: solid 1px rgb(192, 192, 192);
+  box-shadow: 0px 4px 8px #e4e4e4;
+  width: 100px;
+  background-color: rgb(80, 170, 255);
+  position: absolute;
+  bottom: 30px;
+  left: 32%;
+  color: white;
+  cursor: pointer;
+  transition: background-color linear .1s;
+}
+
+.loose-diamond a button:hover {
+  background-color: #FF4500;
+}
+
+.loose-diamond a button:focus {
+  outline: none;
+}
