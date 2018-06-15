@@ -11,13 +11,33 @@ class Stats extends Component {
       this.state = {
         allDiamonds: [],
         subTotals: [],
+        donatorTotals: [],
+        charityTotals: [],
         uniqueSubs: [],
         uniqueDonators: [],
-        donatorTotals: [],
+        uniqueCharities: []
       }
     }
 
-
+getCharityTotals() {
+    var charityList = []
+    var totals = []
+    var totals_sorted = []
+    var diamonds = this.state.allDiamonds
+    diamonds.forEach(function(diamond){
+        charityList.push(diamond.charity)
+        });
+    var theUniques = Array.from(new Set(charityList));
+    this.setState ( {uniqueCharities : theUniques })
+    theUniques.forEach(function(charity){
+        var thisTotal = 0
+        diamonds.forEach(function(diamond){
+            if(diamond.charity == charity) { thisTotal += diamond.amount }
+        });  
+        totals.push( thisTotal )
+    });
+    this.setState( {charityTotals: totals} )
+    }
 
   getUserTotals() {
     var userList = []
@@ -69,6 +89,7 @@ class Stats extends Component {
         this.setState({allDiamonds: Array.from(data)})
         this.getSubTotals()
         this.getUserTotals()
+        this.getCharityTotals()
      });
     }
 
@@ -114,10 +135,25 @@ class Stats extends Component {
                 }]
             };
 
+            const charityData = {
+                labels: this.state.uniqueCharities,
+                datasets: [
+                    {
+                    label: 'Top Charities by Donations',
+                    backgroundColor: 'rgba(69,136,199,0.5)',
+                    borderColor: 'rgba(255,69,0,1)',
+                    borderWidth: 1,
+                    hoverBackgroundColor: 'rgba(255,69,0,0.5)',
+                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    data: this.state.charityTotals
+                    }
+                ]
+                };
+
         return (
             <div>
                 <Header />
-                <div className="barGraph">
+                <div className="firstGraph">
                     <h2>Subreddit Stats</h2>
                         <Bar
                             data={subData}
@@ -125,10 +161,18 @@ class Stats extends Component {
                             redraw
                         />
                 </div>
-                <div className="pieGraph"> 
+                <div className="nextGraph"> 
                     <h2>Redditor Stats</h2>
                         <Pie                
                             data={userData}
+                            options={{ maintainAspectRatio: true }}
+                            redraw
+                            />
+                </div>
+                <div className="nextGraph"> 
+                    <h2>Top Charities</h2>
+                        <HorizontalBar                
+                            data={charityData}
                             options={{ maintainAspectRatio: true }}
                             redraw
                             />
