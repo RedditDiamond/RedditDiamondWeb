@@ -28,7 +28,7 @@ class LooseDiamond extends Component {
 
   renderComment() {
     var string = this.props.data.comment;
-    var length = 48;
+    var length = 85;
     var trimmedString = string.length > length ? 
                     string.substring(0, length - 3) + "..." : 
                     string;
@@ -37,12 +37,17 @@ class LooseDiamond extends Component {
 
   render() {
     return(
-      <div class="loose-diamond">
-        <img src={this.getDiamondImage()}
-        style={this.randomSpeed()}/>
-        <h1>#{this.props.code}</h1>
-        <h2>{this.props.data.initiator} → {this.props.data.owner}</h2>
-        <a target="_blank" href={"https://www.reddit.com/" + this.props.data.permalink}><p>"{this.renderComment()}"</p></a>
+      <div className="loose-diamond">
+        <div className="loose-diamond-header">
+          <a target="_blank" href={"https://www.reddit.com/u/" + this.props.data.initiator}><strong>From</strong> /u/{this.props.data.initiator}</a>
+        </div>
+        <div className="loose-diamond-body">
+          <img src={this.getDiamondImage()}
+            style={this.randomSpeed()}/>
+          <h1>#{this.props.code}</h1>
+          <a target="_blank" href={"https://www.reddit.com/u/" + this.props.data.owner}>/u/{this.props.data.owner}</a>
+          <p>"{this.renderComment()}"</p>
+        </div>
         <Link to={'/verify/' + 'code=' + this.props.code} className="loose-diamond-link">
           <button>Claim Me!</button>
         </Link>

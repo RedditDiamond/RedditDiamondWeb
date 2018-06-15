@@ -15,10 +15,25 @@
   text-align: center;
 }
 
+@media screen and (max-width: 550px) {
+  .loose-diamond-title {
+    font-size: 45px;
+  }
+
+  .loose-diamond-subtitle {
+    font-size: 18px;
+  }
+}
+
 .loose-diamonds {
   margin: 105px auto 0px auto;
 }
 
 .loose-diamonds-grid {
   margin: 0px auto;
+  padding-top: 30px;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+  background-color: white;
+  max-width: 1170px !important;
 }
