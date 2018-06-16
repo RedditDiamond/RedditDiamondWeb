@@ -55,9 +55,11 @@ class Header extends Component {
         <div className={this.state.menuClass}>
           <Link to="/">Home</Link>
           <Link to="/diamonds">Loose Diamonds</Link>
-          <Link to="/stats">Statistics</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/stats">Stats</Link>
+          {/* <Link to="/about">About</Link> */}
+          {/* <Link to="/contact">Contact</Link> */}
+          <a href="https://www.reddit.com/r/RedditDiamondBot/wiki">Wiki</a>
+          <a href="https://www.reddit.com/message/compose?to=%2Fr%2FRedditDiamondBot">PM Us!</a>
         </div>
         <i className="fa fa-bars icon" onClick={this.dropdown}></i>
       </div>

@@ -7,6 +7,11 @@ class LooseDiamond extends Component {
     super();
     this.renderComment = this.renderComment.bind(this);
     this.randomSpeed = this.randomSpeed.bind(this);
+    this.flipCard = this.flipCard.bind(this);
+
+    this.state = {
+      cardClass: "loose-diamond-card"
+    }
   }
 
   getDiamondImage() {
@@ -35,22 +40,39 @@ class LooseDiamond extends Component {
     return trimmedString;
   }
 
+  flipCard() {
+    if (this.state.cardClass == "loose-diamond-card") {
+      this.setState({cardClass: "loose-diamond-card flip"});
+    } else {
+      this.setState({cardClass: "loose-diamond-card"});
+    }
+  }
+
   render() {
     return(
-      <div className="loose-diamond">
-        <div className="loose-diamond-header">
-          <a target="_blank" href={"https://www.reddit.com/u/" + this.props.data.initiator}><strong>From</strong> /u/{this.props.data.initiator}</a>
+      <div className={this.state.cardClass}>
+        <div className="loose-diamond-content">
+          <div className="loose-diamond-front">
+            <div className="loose-diamond-header">
+              <a target="_blank" href={"https://www.reddit.com/u/" + this.props.data.initiator}><strong>From</strong> /u/{this.props.data.initiator}</a>
+            </div>
+            <div className="loose-diamond-body">
+              <img src={this.getDiamondImage()}
+                style={this.randomSpeed()}/>
+              <h1>#{this.props.code}</h1>
+              <a target="_blank" href={"https://www.reddit.com/u/" + this.props.data.owner}>/u/{this.props.data.owner}</a>
+              <p onClick={this.flipCard}>"{this.renderComment()}"</p>
+            </div>
+            <Link to={'/verify/' + 'code=' + this.props.code} className="loose-diamond-link">
+              <button>Give this Diamond!</button>
+            </Link>
+          </div>
+          <div className="loose-diamond-back">
+            <h2>/u/{this.props.data.owner}</h2>
+            <p>"{this.props.data.comment}"</p>
+            <i onClick={this.flipCard} className="fas fa-times" />
+          </div>
         </div>
-        <div className="loose-diamond-body">
-          <img src={this.getDiamondImage()}
-            style={this.randomSpeed()}/>
-          <h1>#{this.props.code}</h1>
-          <a target="_blank" href={"https://www.reddit.com/u/" + this.props.data.owner}>/u/{this.props.data.owner}</a>
-          <p>"{this.renderComment()}"</p>
-        </div>
-        <Link to={'/verify/' + 'code=' + this.props.code} className="loose-diamond-link">
-          <button>Claim Me!</button>
-        </Link>
       </div>
     )
   }

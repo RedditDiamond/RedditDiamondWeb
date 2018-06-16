@@ -151,8 +151,9 @@ getCharityTotals() {
                 };
 
         return (
-            <div>
+            <div className="stats">
                 <Header />
+                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
                     <h2>Subreddit Stats</h2>
                         <Bar

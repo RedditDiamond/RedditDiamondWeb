@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700,800');
+
+.about {
+  margin: 115px auto 0px auto;
+}
+
+.about-content {
+  width: 80%;
+  background-color: white;
+  height: 100%;
+  margin: auto;
+  font-family: "Oxygen", sans-serif;
+}
+
+.about-content h1 {
+  padding-top: 50px;
+  font-weight: 300;
+  text-align: center;
+  color: rgb(88, 88, 88);
+}
+
+.about-content h2 {
+  font-weight: 400;
+  text-align: center;
+  color: rgb(88, 88, 88);
+}

@@ -1,5 +1,21 @@
+.stats {
+    margin: 105px auto 0px auto;
+}
+
+.stats-title {
+    margin: 20px auto 0px auto;
+    font-size: 60px;
+    text-align: center;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-color: rgb(182, 182, 182);
+    text-shadow: rgba(255,255,255,0.5) 0px 2px 3px
+  }
+
 .firstGraph {
-    margin: 112px auto 10px auto;
+    margin: 20px auto 10px auto;
     text-align: center;
     align-content: center;
     font-family: 'Oxygen', sans-serif;

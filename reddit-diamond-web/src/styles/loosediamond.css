@@ -4,17 +4,25 @@ body {
   background: rgb(243, 239, 239);
 }
 
-.loose-diamond {
+.loose-diamond-card {
   font-family: "Open Sans", sans-serif;
   height: 349px;
   width: 100%;
   max-width: 245px;
-  box-shadow: 0px 0px 8px 4px #efefef;
   border-radius: 7px;
   margin: 10px auto;
   margin-bottom: 20px;
-  background-color: white;
+  perspective: 1000px;
+}
+
+.loose-diamond-front {
+  /* background-color: white; */
   border: 1px solid #dedede;
+}
+
+.loose-diamond-card.hidden {
+  display: none;
+  visibility: hidden;
 }
 
 .loose-diamond-header {
@@ -40,12 +48,13 @@ body {
   font-weight: 700;
 }
 
-.loose-diamond img {
+.loose-diamond-front img {
   height: 70px;
   width: 34%;
   margin: 10px 32% 0px 32%;
   display: inline-block;
   margin-top: 10px;
+  perspective: none;
 }
 
 .loose-diamond-body {
@@ -53,7 +62,7 @@ body {
   height: 245px;
 }
 
-.loose-diamond h1 {
+.loose-diamond-front h1 {
   font-weight: 800;
   font-size: 25px;
   text-align: center;
@@ -73,19 +82,28 @@ body {
   color: rgb(53, 53, 53);
 }
 
-.loose-diamond p {
+.loose-diamond-front p {
   font-size: 15px;
   text-align: center;
   font-weight: 300;
   line-height: 20px;
+  cursor: pointer;
 }
 
-.loose-diamond a {
+.loose-diamond-content {
+  width: inherit;
+}
+
+.loose-diamond-front {
+  width: inherit;
+}
+
+.loose-diamond-front a {
   width: inherit;
   cursor: pointer;
 }
 
-.loose-diamond a button {
+.loose-diamond-front a button {
   width: inherit;
   border: none;
   background-color: rgb(80, 170, 255);
@@ -95,4 +113,57 @@ body {
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   cursor: pointer;
+}
+
+.loose-diamond-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 8px 4px #efefef;
+  border-radius: 7px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.loose-diamond-card.flip .loose-diamond-content {
+  perspective: 500px;
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.5s;
+}
+
+.loose-diamond-front,
+.loose-diamond-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  border-radius: 7px;
+  backface-visibility: hidden;
+}
+
+.loose-diamond-back {
+  background: white;
+  transform: rotateY( 180deg );
+}
+
+.loose-diamond-back h2 {
+  margin-top: 23px;
+}
+
+.loose-diamond-back p {
+  width: 90%;
+  height: 73%;
+  overflow: scroll;
+  margin: 10px auto;
+  font-size: 15px;
+  text-align: center;
+}
+
+.loose-diamond-back i {
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  color: rgb(80, 170, 255);
+  font-size: 20px;
 }

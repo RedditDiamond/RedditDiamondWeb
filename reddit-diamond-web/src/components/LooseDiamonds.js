@@ -51,7 +51,7 @@ class LooseDiamonds extends Component {
       <div className="loose-diamonds">
         <Header />
         <h1 className="loose-diamond-title">Loose Diamonds</h1>
-        <h2 className="loose-diamond-subtitle">These diamonds have yet to be completed, consider fulfilling one yourself!</h2>
+        <h2 className="loose-diamond-subtitle">These diamonds have no home yet. Consider fulfilling one below!</h2>
         {this.renderGrid()}
       </div>
     )
