@@ -4,7 +4,6 @@ import Fire from '../config/Fire'
 import {Bar, Line, HorizontalBar, Pie} from 'react-chartjs-2';
 import '../styles/stats.css'
 
-
 class Stats extends Component {
     constructor() {
       super();
@@ -99,38 +98,33 @@ getCharityTotals() {
 
     render() {
 
-        const subData = {
-            labels: this.state.uniqueSubs,
-            datasets: [
-                {
-                label: 'Top Donations by Subreddit',
-                backgroundColor: 'rgba(69,136,199,0.5)',
-                borderColor: 'rgba(255,69,0,1)',
-                borderWidth: 1,
-                hoverBackgroundColor: 'rgba(255,69,0,0.5)',
-                hoverBorderColor: 'rgba(255,99,132,1)',
-                data: this.state.subTotals
-                }
-            ]
-            };
-
-            // need to add more colors here
-            const userData = {
-                labels: this.state.uniqueDonators,
+               // need to add more colors here
+            const subData = {
+                labels: this.state.uniqueSubs,
                 datasets: [{
-                    label: "Top Donators by Username",
-                    data: this.state.donatorTotals,
+                    label: "Combined Subreddit Donations (USD)",
+                    data: this.state.subTotals,
                     backgroundColor: [
-                    '#FF6384',
+                    '#FF6384', // r, g, b, etc
                     '#36A2EB',
                     '#FFCE56',
-                    '#4EE595'
+                    '#4EE595',
+                    '#FF7D01', // orange
+                    '#F42494', // pink
+                    '#FFFA00', // yellow 
+                    '#8B20BB', // magenta
+                    '#007AC7', // navy
                     ],
                     hoverBackgroundColor: [
                     '#FF6384',
                     '#36A2EB',
                     '#FFCE56',
-                    '#4EE595'
+                    '#4EE595',
+                    '#FF7D01', // orange
+                    '#F42494', // pink
+                    '#FFFA00', // yellow 
+                    '#8B20BB', // magenta
+                    '#007AC7', // navy
                     ]
                 }]
             };
@@ -139,7 +133,7 @@ getCharityTotals() {
                 labels: this.state.uniqueCharities,
                 datasets: [
                     {
-                    label: 'Top Charities by Donations',
+                    label: 'Popular Charities by Donations (USD)',
                     backgroundColor: 'rgba(69,136,199,0.5)',
                     borderColor: 'rgba(255,69,0,1)',
                     borderWidth: 1,
@@ -151,27 +145,18 @@ getCharityTotals() {
                 };
 
         return (
-            <div className="stats">
+            <div>
                 <Header />
-                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
-                    <h2>Subreddit Stats</h2>
-                        <Bar
+                    <h2>Subreddit Donations (USD)</h2>
+                        <Pie
                             data={subData}
                             options={{ maintainAspectRatio: true }}
                             redraw
                         />
                 </div>
                 <div className="nextGraph"> 
-                    <h2>Redditor Stats</h2>
-                        <Pie                
-                            data={userData}
-                            options={{ maintainAspectRatio: true }}
-                            redraw
-                            />
-                </div>
-                <div className="nextGraph"> 
-                    <h2>Top Charities</h2>
+                    <h2>Most Popular Charities</h2>
                         <HorizontalBar                
                             data={charityData}
                             options={{ maintainAspectRatio: true }}
