@@ -35,7 +35,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <img className="home-diamond" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Diamond_Emoji_large.png?v=1480481038" />
+        <img className="home-diamond" src="https://i.imgur.com/YGyrKgd.png" />
         <h1 className="welcome-message">Welcome to <span>Reddit</span> Diamond!</h1>
         <h2 className="home-verify-message">Have a Diamond to verify? Enter your code below!</h2>
         <input

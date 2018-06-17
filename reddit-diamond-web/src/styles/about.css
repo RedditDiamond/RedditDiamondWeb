@@ -46,7 +46,8 @@ center img{
 }
 
 a {
-    color: #0070ba;
+    color: rgb(80, 170, 255);
+    text-decoration: none;
 }
 
 body {
@@ -79,6 +80,10 @@ body {
   .mission-statement {
       text-align: center;
       margin-bottom: 30px;
+  }
+
+  .box p{
+      line-height: 25px;
   }
 
   .box h2 {

@@ -47,7 +47,7 @@ class Header extends Component {
       <div className="header">
         <div className="logo">
           <Link to="/" class="logo-link">
-            <img className="logo-diamond" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Diamond_Emoji_large.png?v=1480481038" />
+            <img className="logo-diamond" src="https://i.imgur.com/YGyrKgd.png" />
             <h1 className="logo-name">RedditDiamond</h1>
           </Link>
           <div className="status"><div className={this.state.status == "Online" ? "status-green" : "status-red"}></div> {this.state.status}</div>

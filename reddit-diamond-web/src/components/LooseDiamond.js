@@ -18,11 +18,11 @@ class LooseDiamond extends Component {
     var duration = new Date().getTime()/1000 - this.props.data.timestamp
     // If greater than 6 days
     if (duration > 518400) {
-      return "assets/RedditDiamondRed.png"
+      return "https://i.imgur.com/39Mlo7R.png"
     } else if (duration > 432000) { // 5 days
-      return "assets/RedditDiamondYellow.png"
+      return "https://i.imgur.com/ZsU4RNj.png"
     } else {
-      return "assets/RedditDiamondGreen.png"
+      return "https://i.imgur.com/54MUzEX.png"
     }
   }
 

@@ -56,7 +56,7 @@ class About extends Component {
                     <h2>How It Works</h2>
                     <ol>
                       <li>Summon u/RedditDiamondBot by typing !RedditDiamond as a reply to a worthy post, and the bot will reply with two links.</li>
-                      <li>Click the PayPal Giving Fund link and find the charity you'd like to support. Donate however much you can (min is $1).</li>
+                      <li>Click the <a href="https://www.paypal.com/fundraiser/hub">PayPal Giving Fund</a> link and find the charity you'd like to support. Donate however much you can (min is $1).</li>
                       <li>Check your email for an email titled "You donated $ to ___" (usually the second email from PayPal) and copy the "Track Your Donation" link.</li>
                       <li>Click the unique link given by the bot that says "click here", and paste in your PayPal link to verify</li>
                       <li>RDB will validate your donation and respond to the parent of your original post awarding +1 Reddit Diamond.</li>

@@ -28,7 +28,7 @@ class Verify extends Component {
       cannotVerifyMessage: "",
       askDonator: false,
       donator: "",
-      diamondImage: "/assets/RedditDiamondBlue.png"
+      diamondImage: "https://i.imgur.com/YGyrKgd.png"
     }
   }
 
@@ -45,7 +45,7 @@ class Verify extends Component {
           } else {
             this.setState({cannotVerifyMessage: "This diamond does not exist!",
               recipient: "NoOne",
-              diamondImage: "/assets/RedditDiamondGrey.png"});
+              diamondImage: "https://i.imgur.com/3OuYrDL.png"});
           }
         })
       }

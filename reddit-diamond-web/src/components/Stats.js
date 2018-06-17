@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header'
 import Fire from '../config/Fire'
-import {Bar, Line, HorizontalBar, Pie} from 'react-chartjs-2';
-import {Doughnut} from 'react-chartjs-2';
+import ReactGA from '../config/Analytics'
+import { HorizontalBar } from 'react-chartjs-2';
 import { defaults } from 'react-chartjs-2'
 
 import '../styles/stats.css'
@@ -139,19 +139,21 @@ getCharityTotals() {
   }
 
   componentDidMount () {
-        Fire.database().ref('validated').on('value', snap =>  {
-            var data = [];
-            snap.forEach(ss => {
-            data.push(ss.val());
-            });
+    window.scrollTo(0, 0)
+    Fire.database().ref('validated').on('value', snap =>  {
+        var data = [];
+        snap.forEach(ss => {
+        data.push(ss.val());
+        });
 
-            this.setState({allDiamonds: Array.from(data)})
-            this.getSubTotals()
-            this.getUserTotals()
-            this.getCharityTotals()
-     });
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
+        this.setState({allDiamonds: Array.from(data)})
+        this.getSubTotals()
+        this.getUserTotals()
+        this.getCharityTotals()
+    });
+    ReactGA.pageview("/stats");
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
     }
 
     componentWillUnmount() {
@@ -236,8 +238,9 @@ getCharityTotals() {
 
         this.calculateFontSize()
         return (
-            <div>
+            <div className="stats">
                 <Header />
+                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
                     <h2>Subreddit Donations (USD)</h2>
                     <HorizontalBar 
