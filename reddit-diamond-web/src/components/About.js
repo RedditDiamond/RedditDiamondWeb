@@ -53,6 +53,14 @@ class About extends Component {
 
     <p align="center"><b>Reddit.com sees upwards of 1.69 billion users per month. Once implemented, if RedditDiamond engages only 0.1% of this userbase 2 times per year at the minimum donation amount ($1), worthy charities could see an additional $3,380,000 per year.</b></p>
                     </p>
+                    <h2>How It Works</h2>
+                    <ol>
+                      <li>Summon u/RedditDiamondBot by typing !RedditDiamond as a reply to a worthy post, and the bot will reply with two links.</li>
+                      <li>Click the PayPal Giving Fund link and find the charity you'd like to support. Donate however much you can (min is $1).</li>
+                      <li>Check your email for an email titled "You donated $ to ___" (usually the second email from PayPal) and copy the "Track Your Donation" link.</li>
+                      <li>Click the unique link given by the bot that says "click here", and paste in your PayPal link to verify</li>
+                      <li>RDB will validate your donation and respond to the parent of your original post awarding +1 Reddit Diamond.</li>
+                    </ol>
                   </div>
               </div>
           </div>

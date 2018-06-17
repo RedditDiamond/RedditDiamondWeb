@@ -85,3 +85,7 @@ body {
       font-size: 30px;
       color: rgb(80, 170, 255);
   }
+
+  .box li {
+      margin-bottom: 10px;
+  }
