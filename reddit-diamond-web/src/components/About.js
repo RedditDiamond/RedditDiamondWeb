@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import '../styles/about.css';
+import ReactGA from '../config/Analytics'
 
 class About extends Component {
   constructor() {
@@ -13,6 +14,10 @@ class About extends Component {
       subject: "",
       body: ""
     }
+  }
+
+  componentDidMount() {
+    ReactGA.pageview("/about");
   }
 
   render() {

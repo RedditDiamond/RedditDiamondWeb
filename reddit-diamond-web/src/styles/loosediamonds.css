@@ -37,3 +37,9 @@
   background-color: white;
   max-width: 1170px !important;
 }
+
+.no-diamonds {
+  margin: 70px auto;
+  color: red;
+  text-align: center;
+}

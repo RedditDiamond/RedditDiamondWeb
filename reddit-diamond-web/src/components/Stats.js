@@ -3,6 +3,7 @@ import Header from './Header'
 import Fire from '../config/Fire'
 import {Bar, Line, HorizontalBar, Pie} from 'react-chartjs-2';
 import '../styles/stats.css'
+import ReactGA from '../config/Analytics'
 
 class Stats extends Component {
     constructor() {
@@ -90,6 +91,7 @@ getCharityTotals() {
         this.getUserTotals()
         this.getCharityTotals()
      });
+    ReactGA.pageview("/stats");
     }
 
     handleBarClick(element, id){ 
@@ -145,8 +147,9 @@ getCharityTotals() {
                 };
 
         return (
-            <div>
+            <div className="stats">
                 <Header />
+                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
                     <h2>Subreddit Donations (USD)</h2>
                         <Pie

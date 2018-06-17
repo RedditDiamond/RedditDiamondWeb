@@ -4,6 +4,7 @@ import Header from './Header';
 import Fire from '../config/Fire'
 import LooseDiamond from './LooseDiamond'
 import '../styles/loosediamonds.css';
+import ReactGA from '../config/Analytics'
 
 class LooseDiamonds extends Component {
   constructor() {
@@ -18,20 +19,29 @@ class LooseDiamonds extends Component {
     Fire.database().ref("unvalidated").on("value", (snapshot) => {
       this.setState({diamonds: snapshot.val()})
     })
+    ReactGA.pageview("/diamonds");
   }
 
   renderGrid() {
     var i = 1
     var grid = []
     var row = []
-    Object.keys(this.state.diamonds).map((diamondKey, index) => {
-      row.push(<Col lg={3} sm={6} xs={12}><LooseDiamond key={diamondKey} code={diamondKey} data={this.state.diamonds[diamondKey]} /></Col>)
-      if (i % 4 == 0) {
-        grid.push(row);
-        row = []
+    if (this.state.diamonds) {
+      if (Object.keys(this.state.diamonds).length != 0) {
+        Object.keys(this.state.diamonds).map((diamondKey, index) => {
+          row.push(<Col lg={3} sm={6} xs={12}><LooseDiamond key={diamondKey} code={diamondKey} data={this.state.diamonds[diamondKey]} /></Col>)
+          if (i % 4 == 0) {
+            grid.push(row);
+            row = []
+          }
+          i++;
+        })
+      } else {
+        return <h1 className="no-diamonds">No Loose Diamonds!</h1>
       }
-      i++;
-    })
+    } else {
+      return <h1 className="no-diamonds">No Loose Diamonds!</h1>
+    }
     if (row.length != 0) {grid.push(row);}
     if (Object.keys(this.state.diamonds).length > 3) {
       return(<Container className="loose-diamonds-grid">

@@ -4,6 +4,7 @@ import request from 'request'
 import Fire from '../config/Fire'
 import {Link} from 'react-scroll'
 import '../styles/verify.css'
+import ReactGA from '../config/Analytics'
 
 class Verify extends Component {
   constructor() {
@@ -48,11 +49,14 @@ class Verify extends Component {
         })
       }
     });
+    ReactGA.pageview("/verify");
   }
 
   componentDidMount() {
-    if (!this.props.match.params.donator) {
-      this.setState({askDonator: true, donator: this.props.match.params.donator})
+    if (this.props.match.params.donator == "" || this.props.match.params.donator == undefined || this.props.match.params.donator == null) {
+      this.setState({askDonator: true, donator: ""})
+    } else {
+      this.setState({askDonator: false, donator: this.props.match.params.donator})
     }
   }
 

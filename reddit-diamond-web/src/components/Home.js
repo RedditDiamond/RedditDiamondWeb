@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import Header from './Header'
 import '../styles/home.css'
+import ReactGA from '../config/Analytics'
 
 class Home extends Component {
   constructor() {
@@ -13,6 +14,10 @@ class Home extends Component {
       codeInput: "",
       donatorInput: ""
     }
+  }
+
+  componentDidMount() {
+    ReactGA.pageview("/");
   }
 
   handleChange(e) {
