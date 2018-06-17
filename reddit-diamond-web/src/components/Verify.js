@@ -33,6 +33,7 @@ class Verify extends Component {
   }
 
   componentWillMount() {
+    window.scrollTo(0, 0)
     Fire.database().ref('/unvalidated/' + this.props.match.params.code).once("value", (snapshot) => {
       if (snapshot.val()) {
         this.setState({canVerify: true, recipient: snapshot.val().owner})

@@ -85,6 +85,7 @@ getCharityTotals() {
 
 
   componentDidMount () {
+    window.scrollTo(0, 0)
       Fire.database().ref('validated').on('value', snap =>  {
         var data = [];
         snap.forEach(ss => {

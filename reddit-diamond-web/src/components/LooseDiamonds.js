@@ -16,6 +16,7 @@ class LooseDiamonds extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     Fire.database().ref("unvalidated").on("value", (snapshot) => {
       this.setState({diamonds: snapshot.val()})
     })
