@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header'
 import Fire from '../config/Fire'
 import {Bar, Line, HorizontalBar, Pie} from 'react-chartjs-2';
-import {Doughnut} from 'react-chartjs-2';
+import ReactGA from '../config/Analytics'
 
 import '../styles/stats.css'
 
@@ -86,17 +86,19 @@ getCharityTotals() {
 
   componentDidMount () {
     window.scrollTo(0, 0)
-      Fire.database().ref('validated').on('value', snap =>  {
-        var data = [];
-        snap.forEach(ss => {
-           data.push(ss.val());
+        Fire.database().ref('validated').on('value', snap =>  {
+            var data = [];
+            snap.forEach(ss => {
+            data.push(ss.val());
+            });
+
+            this.setState({allDiamonds: Array.from(data)})
+            this.getSubTotals()
+            this.getUserTotals()
+            this.getCharityTotals()
         });
 
-        this.setState({allDiamonds: Array.from(data)})
-        this.getSubTotals()
-        this.getUserTotals()
-        this.getCharityTotals()
-     });
+        ReactGA.pageview("/stats");
     }
 
     handleBarClick(element, id){ 
@@ -156,8 +158,9 @@ getCharityTotals() {
                     }]};
 
         return (
-            <div>
+            <div className="stats">
                 <Header />
+                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
                     <h2>Subreddit Donations (USD)</h2>
                     <HorizontalBar 
