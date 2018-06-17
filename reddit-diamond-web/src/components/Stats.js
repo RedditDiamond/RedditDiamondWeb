@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import Header from './Header'
 import Fire from '../config/Fire'
 import {Bar, Line, HorizontalBar, Pie} from 'react-chartjs-2';
-import ReactGA from '../config/Analytics'
+import {Doughnut} from 'react-chartjs-2';
+import { defaults } from 'react-chartjs-2'
 
 import '../styles/stats.css'
 
+  
 class Stats extends Component {
     constructor() {
       super();
@@ -16,28 +18,50 @@ class Stats extends Component {
         charityTotals: [],
         uniqueSubs: [],
         uniqueDonators: [],
-        uniqueCharities: []
+        uniqueCharities: [],
+        width: 0,
+        height: 0,
+        barFontSize: 12
       }
+      this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+      defaults.global.defaultFontFamily = 'Oxygen';
     }
 
 getCharityTotals() {
     var charityList = []
-    var totals = []
-    var totals_sorted = []
+    var tmpuniques = []
+    var newtotals = []   
+    var newuniques = [] 
+    var tmpsort = []
     var diamonds = this.state.allDiamonds
+    var index = 0
+ 
     diamonds.forEach(function(diamond){
-        charityList.push(diamond.charity)
+           charityList.push(diamond.charity) 
+
     });
-    var theUniques = Array.from(new Set(charityList));
-    this.setState ( {uniqueCharities : theUniques })
-    theUniques.forEach(function(charity){
+
+    tmpuniques = Array.from(new Set(charityList));
+    
+    tmpuniques.forEach(function(charity){
         var thisTotal = 0
         diamonds.forEach(function(diamond){
-             if(diamond.charity == charity) { thisTotal += diamond.amount }
-        });  
-        totals.push( thisTotal )
+            if(diamond.charity == charity) { thisTotal += diamond.amount 
+        } });  
+        tmpsort.push( [charity, thisTotal] )
     });
-    this.setState( {charityTotals: totals} )
+    // Generate new sorted arrays for the graphs to use
+    tmpsort.sort(this.sortFunction).reverse()
+
+    tmpsort.forEach(function(this_sort){
+        if ( (this_sort[1]>0) && (this_sort[0] != 'RedditDiamondBot')) {
+            newuniques.push ( this_sort[0] )
+            newtotals.push ( this_sort[1] )
+        }
+    
+        
+    });
+    this.setState( {charityTotals: newtotals, uniqueCharities: newuniques} )
     }
 
   getUserTotals() {
@@ -49,6 +73,7 @@ getCharityTotals() {
       });
     var theUniques = Array.from(new Set(userList));
     this.setState ( {uniqueDonators : theUniques })
+
     theUniques.forEach(function(donator){
         var thisTotal = 0
         diamonds.forEach(function(diamond){
@@ -56,36 +81,64 @@ getCharityTotals() {
         });  
         totals.push( thisTotal )
     });
+
     this.setState( {donatorTotals: totals} )
   }
 
+  reSortLists() {
+    this.state.uniqueSubs.sortable({
+     
+    });
+  }
+
+  sortFunction(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] < b[1]) ? -1 : 1;
+    }
+}
 
   getSubTotals() {
     var subList = []
-    var totals = []
+    var tmpuniques = []
+    var newtotals = []   
+    var newuniques = [] 
+    var tmpsort = []
     var diamonds = this.state.allDiamonds
+    var index = 0
+ 
     diamonds.forEach(function(diamond){
            subList.push(diamond.sub) 
 
     });
-    var theUniques = Array.from(new Set(subList));
-    this.setState ( {uniqueSubs : theUniques })
-    console.log(theUniques)
-    theUniques.forEach(function(sub){
+
+    tmpuniques = Array.from(new Set(subList));
+    
+    tmpuniques.forEach(function(sub){
         var thisTotal = 0
         diamonds.forEach(function(diamond){
             if(diamond.sub == sub) { thisTotal += diamond.amount 
-        }
-        });  
-        totals.push( thisTotal )
+        } });  
+        tmpsort.push( [sub, thisTotal] )
     });
-    this.setState( {subTotals: totals} )
+    // Generate new sorted arrays for the graphs to use
+    tmpsort.sort(this.sortFunction).reverse()
+
+    tmpsort.forEach(function(this_sort){
+        if ( (this_sort[1]>0) && (this_sort[0] != 'RedditDiamondBot')) {
+            newuniques.push ( this_sort[0] )
+            newtotals.push ( this_sort[1] )
+        }
+    
+        
+    });
+    this.setState( {subTotals: newtotals, uniqueSubs: newuniques} )
+
   }
 
-
-
   componentDidMount () {
-    window.scrollTo(0, 0)
         Fire.database().ref('validated').on('value', snap =>  {
             var data = [];
             snap.forEach(ss => {
@@ -96,23 +149,47 @@ getCharityTotals() {
             this.getSubTotals()
             this.getUserTotals()
             this.getCharityTotals()
-        });
-
-        ReactGA.pageview("/stats");
+     });
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
     }
 
-    handleBarClick(element, id){ 
-        console.log(`The bin ${element.text} with id ${id} was clicked`);
-      }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    calculateFontSize() {
+        if ( this.state.width > 900) {
+            defaults.global.defaultFontSize = 11;
+        } else if ((this.state.width < 900) && (this.state.width > 680)) {
+            defaults.global.defaultFontSize = 9;
+        } else if ((this.state.width < 680) && (this.state.width > 500)) {
+            defaults.global.defaultFontSize = 7;
+        } else if ( (this.state.width < 500) && (this.state.width > 400)) {
+            defaults.global.defaultFontSize = 6;
+        } else if ( (this.state.width < 400) && (this.state.width > 300)) {
+            defaults.global.defaultFontSize = 5;
+        } else if ( this.state.width < 300) {
+            defaults.global.defaultFontSize = 4;
+        }   
+    }
+
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        this.calculateFontSize();
+    }
 
     render() {
+            //Bar.defaults.global.defaultFontSize = this.state.barFontSize;
 
                // need to add more colors here
             const subData = {
                 labels: this.state.uniqueSubs,
                 datasets: [{
                     label: "Combined Subreddit Donations (USD)",
+            
                     data: this.state.subTotals,
+                    defaultFontSize: this.state.barFontSize,
                     backgroundColor: [
                     '#FF6384', '#36A2EB', '#ff0000',
                     '#4EE595', '#FF7D01', '#32f2e6',
@@ -157,15 +234,30 @@ getCharityTotals() {
                     data: this.state.charityTotals
                     }]};
 
+        this.calculateFontSize()
         return (
-            <div className="stats">
+            <div>
                 <Header />
-                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
                     <h2>Subreddit Donations (USD)</h2>
                     <HorizontalBar 
                             data={subData}
-                            options={{ maintainAspectRatio: true }}
+                            options= {
+                                { maintainAspectRatio: true,
+                                 responsive: true,
+                                 scales: {
+                                    xAxes: [{
+                                          stacked: true,
+                                    }],
+                        
+                                    yAxes: [{
+                                         stacked: true,
+                                          ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                                }}
                             redraw
                         />
                 </div>
@@ -173,7 +265,22 @@ getCharityTotals() {
                     <h2>Most Popular Charities</h2>
                         <HorizontalBar                
                             data={charityData}
-                            options={{ maintainAspectRatio: true }}
+                            options= {
+                                { maintainAspectRatio: true,
+                                 responsive: true,
+                                 scales: {
+                                    xAxes: [{
+                                          stacked: true,
+                                    }],
+                        
+                                    yAxes: [{
+                                         stacked: true,
+                                          ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                }
+                                }}
                             redraw
                             />
                 </div>
