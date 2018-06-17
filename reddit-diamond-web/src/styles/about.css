@@ -10,14 +10,19 @@
     font-family: 'Oxygen', sans-serif;
     font-weight: 100;
     font-size: 14px;
-    width: 80%;
+    width: 70%;
     background-color: #fff;
     border-radius: 8px;
-    border: 1px solid rgb(196,227,247);
     box-shadow: 0px 0px 25px #adadad;
-    padding: 8px;
+    padding: 20px;
     padding-bottom: 20px;
     padding-top: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .box {
+        width: 85%;
+    }
 }
 
 center img{
@@ -52,7 +57,7 @@ body {
     border-radius: 50%;
     width:15%;
     height:auto;
-    box-shadow: 0px 0px 30px #5ac4fb8c;
+    box-shadow: 0px 0px 30px #c5c5c58c;
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 30px;
@@ -69,4 +74,14 @@ body {
     color: transparent;
     background-color: rgb(182, 182, 182);
     text-shadow: rgba(255,255,255,0.5) 0px 2px 3px
+  }
+
+  .mission-statement {
+      text-align: center;
+      margin-bottom: 30px;
+  }
+
+  .box h2 {
+      font-size: 30px;
+      color: rgb(80, 170, 255);
   }

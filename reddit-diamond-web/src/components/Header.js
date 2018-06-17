@@ -31,7 +31,7 @@ class Header extends Component {
             this.setState({status: body["status"] == "True" ? "Online" : "Offline"});
           }
         }.bind(this));
-      }.bind(this), 10000)
+      }.bind(this), 120000)
     }
 
   dropdown() {
@@ -56,9 +56,9 @@ class Header extends Component {
           <Link to="/">Home</Link>
           <Link to="/diamonds">Loose Diamonds</Link>
           <Link to="/stats">Stats</Link>
-          {/* <Link to="/about">About</Link> */}
+          <Link to="/about">About</Link>
           {/* <Link to="/contact">Contact</Link> */}
-          <a href="https://www.reddit.com/r/RedditDiamondBot/wiki">Wiki</a>
+          {/* <a href="https://www.reddit.com/r/RedditDiamondBot/wiki">Wiki</a> */}
           <a href="https://www.reddit.com/message/compose?to=%2Fr%2FRedditDiamondBot">PM Us!</a>
         </div>
         <i className="fa fa-bars icon" onClick={this.dropdown}></i>
