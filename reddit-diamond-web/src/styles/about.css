@@ -1,26 +1,72 @@
-@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700,800');
+.main-contain {
+    margin: 112px auto 10px auto;
 
-.about {
-  margin: 115px auto 0px auto;
 }
 
-.about-content {
-  width: 80%;
-  background-color: white;
-  height: 100%;
-  margin: auto;
-  font-family: "Oxygen", sans-serif;
+.box {
+    margin: 0px auto 10px auto;
+    text-align: left;
+    align-content: center;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid rgb(196,227,247);
+    box-shadow: 0px 0px 25px #adadad;
+    padding: 8px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
-.about-content h1 {
-  padding-top: 50px;
-  font-weight: 300;
-  text-align: center;
-  color: rgb(88, 88, 88);
+center img{
+    width:100%;
+    height:auto;
+  }
+
+
+.top-header {
+    text-align: center;
+    font-size: 30px;
+    font-family: pp-sans-big-light;
+    line-height: 48px;
+    text-align: center;
 }
 
-.about-content h2 {
-  font-weight: 400;
-  text-align: center;
-  color: rgb(88, 88, 88);
+.second-header {
+    text-align: center;
+    font-size: 15px;
+    font-family: pp-sans-big-light;
 }
+
+a {
+    color: #0070ba;
+}
+
+body {
+    background: #E9EBEE;    
+}
+
+.span-responsive-img {
+    border-radius: 50%;
+    width:15%;
+    height:auto;
+    box-shadow: 0px 0px 30px #5ac4fb8c;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.about-title {
+    margin: 10% auto 0px auto;
+    font-size: 50px;
+    text-align: center;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-color: rgb(182, 182, 182);
+    text-shadow: rgba(255,255,255,0.5) 0px 2px 3px
+  }
