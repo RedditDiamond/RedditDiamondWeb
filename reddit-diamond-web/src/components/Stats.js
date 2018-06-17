@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Header from './Header'
 import Fire from '../config/Fire'
 import {Bar, Line, HorizontalBar, Pie} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
+
 import '../styles/stats.css'
-import ReactGA from '../config/Analytics'
 
 class Stats extends Component {
     constructor() {
@@ -26,13 +27,13 @@ getCharityTotals() {
     var diamonds = this.state.allDiamonds
     diamonds.forEach(function(diamond){
         charityList.push(diamond.charity)
-        });
+    });
     var theUniques = Array.from(new Set(charityList));
     this.setState ( {uniqueCharities : theUniques })
     theUniques.forEach(function(charity){
         var thisTotal = 0
         diamonds.forEach(function(diamond){
-            if(diamond.charity == charity) { thisTotal += diamond.amount }
+             if(diamond.charity == charity) { thisTotal += diamond.amount }
         });  
         totals.push( thisTotal )
     });
@@ -64,19 +65,23 @@ getCharityTotals() {
     var totals = []
     var diamonds = this.state.allDiamonds
     diamonds.forEach(function(diamond){
-        subList.push(diamond.sub)
+           subList.push(diamond.sub) 
+
     });
     var theUniques = Array.from(new Set(subList));
     this.setState ( {uniqueSubs : theUniques })
+    console.log(theUniques)
     theUniques.forEach(function(sub){
         var thisTotal = 0
         diamonds.forEach(function(diamond){
-            if(diamond.sub == sub) { thisTotal += diamond.amount }
+            if(diamond.sub == sub) { thisTotal += diamond.amount 
+        }
         });  
         totals.push( thisTotal )
     });
     this.setState( {subTotals: totals} )
   }
+
 
 
   componentDidMount () {
@@ -91,7 +96,6 @@ getCharityTotals() {
         this.getUserTotals()
         this.getCharityTotals()
      });
-    ReactGA.pageview("/stats");
     }
 
     handleBarClick(element, id){ 
@@ -107,30 +111,18 @@ getCharityTotals() {
                     label: "Combined Subreddit Donations (USD)",
                     data: this.state.subTotals,
                     backgroundColor: [
-                    '#FF6384', // r, g, b, etc
-                    '#36A2EB',
-                    '#FFCE56',
-                    '#4EE595',
-                    '#FF7D01', // orange
-                    '#F42494', // pink
-                    '#FFFA00', // yellow 
-                    '#8B20BB', // magenta
-                    '#007AC7', // navy
-                    ],
-                    hoverBackgroundColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56',
-                    '#4EE595',
-                    '#FF7D01', // orange
-                    '#F42494', // pink
-                    '#FFFA00', // yellow 
-                    '#8B20BB', // magenta
-                    '#007AC7', // navy
-                    ]
-                }]
-            };
-
+                    '#FF6384', '#36A2EB', '#ff0000',
+                    '#4EE595', '#FF7D01', '#32f2e6',
+                    '#5806d7', '#56f63d', '#FFFA00',
+                    '#8B20BB', '#007AC7', '#3d4517',
+                    '#e6c3a5', '#a941f5', '#766152',
+                    '#fbdd16', '#ad6588', '#d34680',
+                    '#3d11b2', '#2d3f67', '#82ac7e',
+                    '#a95190', '#b29dab', '#6f665d',
+                    '#96441b', '#fb601d', '#46a676', '#fcd694' ],    
+                }]};
+        
+         
             const charityData = {
                 labels: this.state.uniqueCharities,
                 datasets: [
@@ -139,20 +131,35 @@ getCharityTotals() {
                     backgroundColor: 'rgba(69,136,199,0.5)',
                     borderColor: 'rgba(255,69,0,1)',
                     borderWidth: 1,
-                    hoverBackgroundColor: 'rgba(255,69,0,0.5)',
-                    hoverBorderColor: 'rgba(255,99,132,1)',
+                    backgroundColor: [
+                        '#FF6384', '#36A2EB', '#ff0000',
+                        '#4EE595', '#FF7D01', '#32f2e6',
+                        '#5806d7', '#56f63d', '#FFFA00',
+                        '#8B20BB', '#007AC7', '#3d4517',
+                        '#e6c3a5', '#a941f5', '#766152',
+                        '#fbdd16', '#ad6588', '#d34680',
+                        '#3d11b2', '#2d3f67', '#82ac7e',
+                        '#a95190', '#b29dab', '#6f665d',
+                        '#96441b', '#fb601d', '#46a676', '#fcd694' ],
+                        hoverBackgroundColor: [
+                        '#FF6384', '#36A2EB', '#FFCE56',
+                        '#4EE595', '#FF7D01', '#32f2e6',
+                        '#dec950', '#F42494', '#FFFA00',
+                        '#8B20BB', '#007AC7', '#3d4517',
+                        '#e6c3a5', '#a941f5', '#766152',
+                        '#fbdd16', '#ad6588', '#d34680',
+                        '#3d11b2', '#2d3f67', '#82ac7e',
+                        '#a95190', '#b29dab', '#6f665d',
+                        '#96441b', '#fb601d', '#46a676', '#fcd694' ],
                     data: this.state.charityTotals
-                    }
-                ]
-                };
+                    }]};
 
         return (
-            <div className="stats">
+            <div>
                 <Header />
-                <h1 className="stats-title">Stats</h1>
                 <div className="firstGraph">
                     <h2>Subreddit Donations (USD)</h2>
-                        <Pie
+                    <HorizontalBar 
                             data={subData}
                             options={{ maintainAspectRatio: true }}
                             redraw
