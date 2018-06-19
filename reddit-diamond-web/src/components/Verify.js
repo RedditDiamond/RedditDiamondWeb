@@ -50,6 +50,9 @@ class Verify extends Component {
         })
       }
     });
+    // Fire.database().ref('/validated/' + this.props.match.params.code).on("value", (snapshot) => {
+    //   this.setState({charity: snapshot.val()[""], amount: body["amount"]})
+    // })
     ReactGA.pageview("/verify");
   }
 
